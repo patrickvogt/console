@@ -9,7 +9,7 @@ v. 0.01 (2011-12-14)
 
 ======
 
-v. 0.0 (2011-Februar/M√§rz)
+v. 0.0 (2011-Februar/M‰rz)
 ------
 
-+ Erste lauff√§hige Version
++ Erste lauff‰hige Version
