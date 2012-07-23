@@ -1,4 +1,5 @@
-console
-=======
+################################################################################
+# GIT:CONSOLE                                                                  #
+################################################################################
 
-Homebrew development for gaming consoles
+Homebrew development for several gaming consoles
