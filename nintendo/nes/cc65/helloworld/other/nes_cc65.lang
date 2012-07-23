@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- THIS FILE CAN BE USED TO ENABLE SYNTAX HIGHLIGHTING FOR THE NES INSTRUCTION SET AND CC65 COMMANDS IN gEDIT -->
+<language id="nes_cc65" _name="NES (CC65)" version="2.0" _section="Sources">
+  <metadata>
+    <property name="mimetypes">text/plain</property>
+    <property name="globs">*.s|*.asm</property>
+    <property name="line-comment-start">;</property>
+  </metadata>
+
+  <styles>
+    <style id="comment"           _name="Comment"             map-to="def:comment"/>
+    <style id="error"             _name="Error"               map-to="def:error"/>
+    <style id="string"            _name="String"              map-to="def:string"/>
+    <style id="preprocessor"      _name="Preprocessor"        map-to="def:preprocessor"/>
+    <style id="included-file"     _name="Included File"       map-to="def:string"/>
+    <style id="char"              _name="Character"           map-to="def:character"/>
+    <style id="keyword"           _name="Keyword"             map-to="def:keyword"/>
+    <style id="type"              _name="Data Type"           map-to="def:type"/>   
+    <style id="escaped-character" _name="Escaped Character"   map-to="def:special-char"/>
+    <style id="decimal"           _name="Decimal number"      map-to="def:decimal"/>
+    <style id="octal"             _name="Octal number"        map-to="def:base-n-integer"/>
+    <style id="hexadecimal"       _name="Hexadecimal number"  map-to="def:base-n-integer"/>
+  </styles>
+
+  <definitions>
+
+  <define-regex id="escaped-character" extended="true">
+    \\(                   # leading backslash
+    [\\\"\'nrbtfav\?] |   # escaped character
+    [0-7]{1,3} |          # one, two, or three octal digits
+    x[0-9A-Fa-f]+         # 'x' followed by hex digits
+    )
+  </define-regex>
+
+  <context id="nes_cc65" class="no-spell-check">
+    <include>
+
+      <!-- gtk-doc -->
+      <context ref="gtk-doc:inline-docs-section"/>
+
+      <!-- Comments -->
+      <context id="comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
+        <start>;</start>
+
+        <include>
+          <context ref="def:in-line-comment"/>
+        </include>
+      </context>
+
+      <!-- Preprocessor -->
+      <define-regex id="preproc-start">^\s*\.\s*</define-regex>
+
+      <context id="include" style-ref="preprocessor">
+        <match extended="true">
+          \%{preproc-start}
+          (INCLUDE)\s*
+          (".*?")
+        </match>
+        <include>
+          <context id="included-file" sub-pattern="2" style-ref="included-file"/>
+        </include>
+      </context>
+
+      <context id="preprocessor" style-ref="preprocessor" end-at-line-end="true">
+        <start extended="true">
+          \%{preproc-start}
+            (   CPU|
+                PARAMCOUNT|
+                TIME|
+                VERSION|
+                BANKBYTE|
+                BLANK|
+                CONCAT|
+                CONST|
+                HIBYTE|
+                HIWORD|
+                IDENT|
+                LEFT|
+                LOBYTE|
+                LOWORD|
+                MATCH|
+                MID|
+                REF|
+                REFERENCED|
+                RIGHT|
+                SIZEOF|
+                STRAT|
+                SPRINTF|
+                STRING|
+                STRLEN|
+                TCOUNT|
+                XMATCH|
+                A16|
+                A8|
+                ADDR|
+                ALIGN|
+                ASCIIZ|
+                ASSERT|
+                AUTOIMPORT|
+                BANKBYTES|
+                BSS|
+                CASE|
+                CHARMAP|
+                CODE|
+                CONDES|
+                CONSTRUCTOR|
+                DATA|
+                DEBUGINFO|
+                DEFINE|
+                DEF|
+                DEFINED|
+                DESTRUCTOR|
+                ELSE|
+                ELSEIF|
+                END|
+                ENDENUM|
+                ENDIF|
+                ENDMAC|
+                ENDMACRO|
+                ENDPROC|
+                ENDREP|
+                ENDREPEAT|
+                ENDSCOPE|
+                ENDSTRUCT|
+                ENUM|
+                ERROR|
+                EXITMAC|
+                EXITMACRO|
+                EXPORT|
+                EXPORTZP|
+                FARADDR|
+                FEATURE|
+                FILEOPT|
+                FOPT|
+                FORCEIMPORT|
+                GLOBAL|
+                GLOBALZP|
+                HIBYTES|
+                I16|
+                I8|
+                IF|
+                IFBLANK|
+                IFCONST|
+                IFDEF|
+                IFNBLANK|
+                IFNDEF|
+                IFNREF|
+                IFP02|
+                IFP816|
+                IFPC02|
+                IFPSC02|
+                IFREF|              
+                IMPORT|
+                IMPORTZP|
+                INCBIN|
+                INCLUDE|
+                INTERRUPTOR|
+                LINECONT|
+                LIST|
+                LISTBYTES|
+                LOBYTES|
+                LOCAL|
+                LOCALCHAR|
+                MACPACK|
+                MAC|
+                MACRO|
+                ORG|
+                OUT|
+                P02|
+                P816|
+                PAGELEN|
+                PAGELENGTH|
+                PC02|
+                POPSEG|
+                PROC|
+                PSC02|
+                PUSHSEG|
+                RELOC|
+                REPEAT|
+                RES|
+                RODATA|
+                SCOPE|
+                SEGMENT|
+                SETCPU|
+                SMART|
+                STRUCT|
+                SUNPLUS|
+                TAG|
+                WARNING|
+                ZEROPAGE)
+                \b
+        </start>
+        <include>
+          <context ref="def:line-continue" ignore-style="true"/>
+          <context ref="string" ignore-style="true"/>
+          <context ref="comment"/>
+        </include>
+      </context>
+
+      <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
+        <start>L?"</start>
+        <end>"</end>
+        <include>
+          <context id="escaped-character" style-ref="escaped-character">
+            <match>\%{escaped-character}</match>
+          </context>
+          <context ref="def:line-continue"/>
+        </include>
+      </context>
+
+      <context id="hexadecimal" style-ref="hexadecimal">
+        <match extended="true">
+          (?&lt;![\w\.])
+          0[xX][a-fA-F0-9]+[uUlL]*
+          (?![\w\.])
+        </match>
+      </context>
+
+      <context id="octal" style-ref="octal">
+        <match extended="true">
+          (?&lt;![\w\.])
+          0[0-7]+[uUlL]*
+          (?![\w\.])
+        </match>
+      </context>
+
+      <context id="decimal" style-ref="decimal">
+        <match extended="true">
+          (?&lt;![\w\.])
+          [0-9]+[uUlL]*
+          (?![\w\.])
+        </match>
+      </context>
+
+      <!-- Keywords -->
+      <context id="keywords" style-ref="keyword" class="keyword">
+        <!-- Generic 6502 instruction set -->
+        <keyword>adc</keyword>
+        <keyword>and</keyword>
+        <keyword>asl</keyword>
+        <keyword>bcc</keyword>
+        <keyword>bcs</keyword>
+        <keyword>beq</keyword>
+        <keyword>bit</keyword>
+        <keyword>bmi</keyword>
+        <keyword>bne</keyword>
+        <keyword>bpl</keyword>
+        <keyword>brk</keyword>
+        <keyword>bvc</keyword>
+        <keyword>bvs</keyword>
+        <keyword>clc</keyword>
+        <keyword>cld</keyword>
+        <keyword>cli</keyword>
+        <keyword>clv</keyword>
+        <keyword>cmp</keyword>
+        <keyword>cpx</keyword>
+        <keyword>cpy</keyword>
+        <keyword>dec</keyword>
+        <keyword>dex</keyword>
+        <keyword>dey</keyword>
+        <keyword>eor</keyword>
+        <keyword>inc</keyword>
+        <keyword>inx</keyword>
+        <keyword>iny</keyword>
+        <keyword>jmp</keyword>
+        <keyword>jsr</keyword>
+        <keyword>lda</keyword>
+        <keyword>ldx</keyword>
+        <keyword>ldy</keyword>
+        <keyword>lsr</keyword>
+        <keyword>nop</keyword>
+        <keyword>ora</keyword>
+        <keyword>pha</keyword>
+        <keyword>php</keyword>
+        <keyword>pla</keyword>
+        <keyword>plp</keyword>
+        <keyword>rol</keyword>
+        <keyword>ror</keyword>
+        <keyword>rti</keyword>
+        <keyword>rts</keyword>
+        <keyword>sbc</keyword>
+        <keyword>sec</keyword>
+        <keyword>sed</keyword>
+        <keyword>sei</keyword>
+        <keyword>sta</keyword>
+        <keyword>stx</keyword>
+        <keyword>sty</keyword>
+        <keyword>tax</keyword>
+        <keyword>tay</keyword>
+        <keyword>tsx</keyword>
+        <keyword>txa</keyword>
+        <keyword>txs</keyword>
+        <keyword>tya</keyword>
+      </context>
+
+      <context id="types" style-ref="type" class="type">
+        <keyword>BYT</keyword>
+        <keyword>BYTE</keyword>
+        <keyword>DBYT</keyword>
+        <keyword>DWORD</keyword>
+        <keyword>WORD</keyword>
+      </context>
+      </include>
+    </context>
+  </definitions>
+</language>
+
