@@ -25,3 +25,5 @@
 /sega/sg/binutils-m68k-coff/helloworld/memory.map
 /sega/sg/binutils-m68k-coff/helloworld/Gens.cfg
 /sega/sg/binutils-m68k-coff/helloworld/language.dat
+/nintendo/gb/rgbds/helloworld/dist/hello.gb
+/nintendo/gb/rgbds/helloworld/obj/hello.o

@@ -88,5 +88,5 @@ Here is a short list of my reosurces:
 
 Every documentation (besides this document) is written in German. Why?
 
-I think that there are no documents about NES-Programming that are written in or
+I think that there are no documents about NES programming that are written in or
 translated to the German language. I would like to change that fact.

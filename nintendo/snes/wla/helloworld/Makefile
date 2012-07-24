@@ -22,6 +22,8 @@ ASSFLAGS = # Argumente für den Assembler
 
 .PHONY: all run clean deploy
 
+all: dist/hello.smc
+
 dist/hello.smc: src/header.inc src/main.asm src/init.asm \
     src/load_graphics.asm src/snes.inc src/tiles.inc ./hello.link
 	 cd src && $(ASSEMBLER) -vo main.asm ../obj/main.o && cd ..
@@ -36,4 +38,3 @@ run: dist/hello.smc
 # löscht alle (durch dieses Makefile) erzeugten Dateien
 clean:
 	rm $(CLEANABLE_OBJS)
-

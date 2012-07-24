@@ -8,6 +8,14 @@ ALLE
 
 ======
 
+GB - helloworld (rgbds)
+------
+
++ PATTERN TABLE dynamisch erstellen, ähnlich zum NES helloworld
++ ROM Header reparieren (NO$GMB erzeugt beim Laden eine Warnung)
+
+======
+
 SNES - helloworld (wla)
 ------
 
