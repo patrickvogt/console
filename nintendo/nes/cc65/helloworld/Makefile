@@ -50,12 +50,12 @@ dist/hello.nes: bin/hello.prg bin/hello.chr
 	cat $^ > $@
  
 # erstellt den .text-Bereich des ROMs
-bin/hello.prg: ./NES_ROM_LAYOUT.conf obj/main.o
+bin/hello.prg: ./NES_ROM_LAYOUT.link obj/main.o
 	$(LINKER) -o bin/hello.prg -C $^
  
 # kompiliert die Quelldatei
-obj/main.o: src/main.s src/nes.h
-	cd src && $(ASSEMBLER) $(ASSFLAGS) main.s -o ../obj/main.o && cd ..
+obj/main.o: src/main.asm src/nes.inc
+	cd src && $(ASSEMBLER) $(ASSFLAGS) main.asm -o ../obj/main.o && cd ..
 
 # fügt beide Pattern Tables zusammen
 bin/hello.chr: bin/pattern_table_1.chr bin/pattern_table_2.chr

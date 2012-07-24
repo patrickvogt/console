@@ -1,4 +1,4 @@
-.INCLUDE "nes.h"
+.INCLUDE "nes.inc"
 
 .GLOBALZP nmis
 
