@@ -16,3 +16,12 @@
 /nintendo/snes/wla/helloworld/dist/hello.smc
 /nintendo/snes/wla/helloworld/obj/hello.o
 /nintendo/snes/wla/helloworld/obj/main.o
+/sega/sg/binutils-m68k-coff/helloworld/bin/a.out
+/sega/sg/binutils-m68k-coff/helloworld/dist/hello.bin
+/sega/sg/binutils-m68k-coff/helloworld/obj/impact_pat_rle.o
+/sega/sg/binutils-m68k-coff/helloworld/obj/main.o
+/sega/sg/binutils-m68k-coff/helloworld/obj/sega.o
+/sega/sg/binutils-m68k-coff/helloworld/obj/z80driver.o
+/sega/sg/binutils-m68k-coff/helloworld/memory.map
+/sega/sg/binutils-m68k-coff/helloworld/Gens.cfg
+/sega/sg/binutils-m68k-coff/helloworld/language.dat
