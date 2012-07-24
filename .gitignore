@@ -7,3 +7,9 @@
 /nintendo/nes/cc65/helloworld/obj/main.o
 /nintendo/nes/cc65/helloworld/tools/chr2asciiart.exe
 /nintendo/nes/cc65/helloworld/tools/asciiart2chr.exe
+/nintendo/nes/wla/helloworld/bin/pattern_table_1.chr
+/nintendo/nes/wla/helloworld/bin/pattern_table_2.chr
+/nintendo/nes/wla/helloworld/dist/hello.nes
+/nintendo/nes/wla/helloworld/obj/hello.o
+/nintendo/nes/wla/helloworld/tools/asciiart2chr.exe
+/nintendo/nes/wla/helloworld/tools/chr2asciiart.exe
