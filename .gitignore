@@ -13,3 +13,6 @@
 /nintendo/nes/wla/helloworld/obj/hello.o
 /nintendo/nes/wla/helloworld/tools/asciiart2chr.exe
 /nintendo/nes/wla/helloworld/tools/chr2asciiart.exe
+/nintendo/snes/wla/helloworld/dist/hello.smc
+/nintendo/snes/wla/helloworld/obj/hello.o
+/nintendo/snes/wla/helloworld/obj/main.o
