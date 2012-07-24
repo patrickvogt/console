@@ -27,3 +27,8 @@
 /sega/sg/binutils-m68k-coff/helloworld/language.dat
 /nintendo/gb/rgbds/helloworld/dist/hello.gb
 /nintendo/gb/rgbds/helloworld/obj/hello.o
+/sega/sms/wla/helloworld/bin/pattern_table_1.chr
+/sega/sms/wla/helloworld/dist/hello.sms
+/sega/sms/wla/helloworld/obj/hello.o
+/sega/sms/wla/helloworld/tools/asciiart2chr.exe
+/sega/sms/wla/helloworld/tools/chr2asciiart.exe
