@@ -1,0 +1,208 @@
+;---------------
+; VB Ram
+;---------------
+df. SRAM_START		0x00000000		; 0x0000 0000 - 0x0007 FFFF	RAM			0x7FFFF bytes
+df. L_FBUFF0		0x00000000		; 0x0000 0000 - 0x0000 5FFF	L FrameBuff0	0x6000 bytes  
+df. CHR_TBL0		0x00006000		; 0x0000 6000 - 0x0000 7FFF	CHR 0-511		0x2000 bytes
+df. L_FBUFF1		0x00008000		; 0x0000 8000 - 0x0000 DFFF	L FrameBuff1	0x6000 bytes  
+df. CHR_TBL1		0x0000E000		; 0x0000 E000 - 0x0000 FFFF	CHR 512-1023	0x2000 bytes
+df. R_FBUFF0		0x00010000		; 0x0001 0000 - 0x0001 5FFF	R FrameBuff0	0x6000 bytes
+df. CHR_TBL2		0x00016000		; 0x0001 6000 - 0x0001 7FFF	CHR 1024-1535	0x2000 bytes
+df. R_FBUFF1		0x00018000		; 0x0001 8000 - 0x0001 DFFF	R FrameBuff1	0x6000 bytes
+df. CHR_TBL3		0x0001E000		; 0x0001 E000 - 0x0001 FFFF	CHR 1536-2047	0x2000 bytes
+
+df. BG_MAP			0x00020000		; 0x0002 0000 - 0x0003 BFFF	BG Map		0x1C000 bytes *(2)
+df. PARM_TBL		0x0003C000		; 0x0003 C000 - 0x0003 D7FF	ParamTable		0x17FF  bytes
+df. WORLD			0x0003D800		; 0x0003 D800 - 0x0003 DBFF	World			0x400   bytes
+df. COLUMN_TBL1		0x0003DC00		; 0x0003 DC00 - 0x0003 DDFF	ColumbTbl1		0x0200h Bytes 
+df. COLUMN_TBL2		0x0003DE00		; 0x0003 DE00 - 0x0003 DFFF	ColumbTbl2		0x0200h Bytes 
+df. OBJECT			0x0003E000		; 0x0003 E000 - 0x0003 FFFF	Object		0x2000  bytes
+
+							; 0x0004 0000 - 0x0005 F7FF  VIP Mirroring??? (How does this work?)
+df. VIP_START		0x0005F800		; 0x0005 F800 - 0x0005 F870  VIP (Only accesable in HWords)
+
+; Offset from VIP_START (VIPRelative)
+df. VIPR_INTPND		0x00000000
+df. VIPR_INTENB		0x00000002
+df. VIPR_INTCLR		0x00000004
+df. VIPR_DPSTTS		0x00000020
+df. VIPR_DPCTRL		0x00000022
+df. VIPR_BRTA		0x00000024
+df. VIPR_BRTB		0x00000026
+df. VIPR_BRTC		0x00000028
+df. VIPR_REST		0x0000002A
+df. VIPR_FRMCYC		0x0000002E
+df. VIPR_CTA		0x00000030
+df. VIPR_XPSTTS		0x00000040
+df. VIPR_XPCTRL		0x00000042
+df. VIPR_VER		0x00000044
+df. VIPR_SPT0		0x00000048
+df. VIPR_SPT1		0x0000004A
+df. VIPR_SPT2		0x0000004C
+df. VIPR_SPT3		0x0000004E
+df. VIPR_GPLT0		0x00000060
+df. VIPR_GPLT1		0x00000062
+df. VIPR_GPLT2		0x00000064
+df. VIPR_GPLT3		0x00000066
+df. VIPR_JPLT0		0x00000068
+df. VIPR_JPLT1		0x0000006A
+df. VIPR_JPLT2		0x0000006C
+df. VIPR_JPLT3		0x0000006E
+df. VIPR_BKCOL		0x00000070
+
+; Phisical adress in memory
+df. VIP_INTPND		0x0005F800		; INTPND - Write the curent interupt hear
+df. VIP_INTENB		0x0005F802		; INTENB - Check if Interupt is inabled, first
+df. VIP_INTCLR		0x0005F804		; INTCLR - Clear the bits in int pending from this...
+df. VIP_DPSTTS		0x0005F820		; DPSTTS - Display Status
+df. VIP_DPCTRL		0x0005F822		; DPCTRL - Display Controll
+df. VIP_BRTA		0x0005F824		; BRTA   - Color for the given 4 bit columb
+df. VIP_BRTB		0x0005F826		; BRTB   - Max of 80? (Maby 100)
+df. VIP_BRTC		0x0005F828		; BRTC   - Britness is cumulative, BRTB = BRTA+BRTB; BRTC=BRTA+BRTB+BRTC
+df. VIP_REST		0x0005f82A		; REST
+df. VIP_FRMCYC		0x0005F82E		; FRMCYC
+df. VIP_CTA			0x0005F830		; CTA    - Columb Table Address
+df. VIP_XPSTTS		0x0005F840		; XPSTTS
+df. VIP_XPCTRL		0x0005F842		; XPCTRL
+df. VIP_VER			0x0005F844		; VER
+df. VIP_SPT0		0x0005F848		; SPT0   - Pointers to the 4 OBJ groupes in OBJ Mem
+df. VIP_SPT1		0x0005F84A		; SPT1
+df. VIP_SPT2		0x0005F84C		; SPT2
+df. VIP_SPT3		0x0005F84E		; SPT3
+df. VIP_GPLT0		0x0005F860		; GPLT0 - Set the current color palet... 
+df. VIP_GPLT1		0x0005F862		; GPLT1 -  for the BGMap's
+df. VIP_GPLT2		0x0005F864		; GPLT2 - Selected by BPLTS from the BGMap Atribute Table.
+df. VIP_GPLT3		0x0005F866		; GPLT3 -  there are 4 2bit pallets per GPLTx register
+df. VIP_JPLT0		0x0005F868		; JPLT0 - Set the current color palet.
+df. VIP_JPLT1		0x0005F86A		; JPLT1 -  for the OBJ's
+df. VIP_JPLT2		0x0005F86C		; JPLT2 - Selected by JPLTS from the OBJ Atribute table.
+df. VIP_JPLT3		0x0005F86E		; JPLT3
+df. VIP_BKCOL		0x0005F870		; BKCOL - Color to clear the BackGround to
+
+; Linear ChrTable
+df. CHR_TBLL		0x00078000		; 0x0007 8000 - 0x0007 FFFF  CHR Data   0x8000  bytes //Mirrored from above... (Linear)
+							; 0x0008 0000 - 0x00FF FFFF  Mirroring of above (0x0000 0000 - 0x0007 FFFF)
+
+;---------------
+; VB Sound Mem
+;---------------
+df. SOUND_START		0x01000000		; 0x0100 0000 - 0x0100 05FF -  Mem_2, Sound!  *(1)
+  							; 0x0100 0280 - 0x0100 02FF -  Modulation Data Ram
+
+; Offset from SOUND_START (SCRelative)
+df. SCREGR_SDATA1		0x00000000
+df. SCREGR_SDATA2		0x00000080
+df. SCREGR_SDATA3		0x00000100
+df. SCREGR_SDATA4		0x00000180
+df. SCREGR_SWEEPDATA	0x00000200
+df. SCREGR_MODDATA	0x00000280
+
+;Sound COntroll Registers
+; Sound 1
+df. SCREGR_S1CTRL		0x00000400
+df. SCREGR_S1LEN		0x00000404
+df. SCREGR_S1FL		0x00000408
+df. SCREGR_S1FH		0x0000040C
+df. SCREGR_S1?L		0x00000410
+df. SCREGR_S1?H		0x00000414
+df. SCREGR_S1INST		0x00000418
+
+; Sound 2
+df. SCREGR_S2CTRL		0x00000440
+df. SCREGR_S2LEN		0x00000444
+df. SCREGR_S2FL		0x00000448
+df. SCREGR_S2FH		0x0000044C
+df. SCREGR_S2?L		0x00000450
+df. SCREGR_S2?H		0x00000454
+df. SCREGR_S2INST		0x00000458
+
+; Sound 3
+df. SCREGR_S3CTRL		0x00000480
+df. SCREGR_S3LEN		0x00000484
+df. SCREGR_S3FL		0x00000488
+df. SCREGR_S3FH		0x0000048C
+df. SCREGR_S3?L		0x00000490
+df. SCREGR_S3?H		0x00000494
+df. SCREGR_S3INST		0x00000498
+
+; Sound 4
+df. SCREGR_S4CTRL		0x000004C0
+df. SCREGR_S4LEN		0x000004C4
+df. SCREGR_S4FL		0x000004C8
+df. SCREGR_S4FH		0x000004CC
+df. SCREGR_S4?L		0x000004D0
+df. SCREGR_S4?H		0x000004D4
+df. SCREGR_S4INST		0x000004D8
+
+
+; Sound 5
+df. SCREGR_S5CTRL		0x00000500
+df. SCREGR_S5LEN		0x00000504
+df. SCREGR_S5FL		0x00000508
+df. SCREGR_S5FH		0x0000050C
+df. SCREGR_S5?L		0x00000510
+df. SCREGR_S5?H		0x00000514
+df. SCREGR_S5INST		0x00000518
+
+; Sound 6
+df. SCREGR_S6CTRL		0x00000540
+df. SCREGR_S6LEN		0x00000544
+df. SCREGR_S6FL		0x00000548
+df. SCREGR_S6FH		0x0000054C
+df. SCREGR_S6?L		0x00000550
+df. SCREGR_S6?H		0x00000554
+df. SCREGR_S6INST		0x00000558
+
+df. SCREGR_SMRG		0x00000580
+
+;---------------
+; VB Hardware Mem
+;---------------
+df. HCREG_START		0x02000000		; 0x0200 0000 - 0x0200 002C -  hardware controll registers (HCREG) (MASK with FF)
+
+; Offset from HCREG_START (HCReg Relative)
+df. HCREGR_LPC		0x00000000
+df. HCREGR_LPC2		0x00000004
+df. HCREGR_LPT		0x00000008
+df. HCREGR_LPR		0x0000000C
+df. HCREGR_KLB		0x00000010
+df. HCREGR_KHB		0x00000014
+df. HCREGR_TLB		0x00000018
+df. HCREGR_THB		0x0000001C
+df. HCREGR_TCR		0x00000020
+;df. HCREGR_??		0x00000024
+df. HCREGR_KCR		0x00000028
+
+; Phisical adress in memory
+df. HCREG_LPC		0x02000000		; LPC  - Link Port Controll Reg
+df. HCREG_LPC2		0x02000004		; LPC2 - Link Port Controll Reg
+df. HCREG_LPT		0x02000008		; LPT  - Link Port Transmit
+df. HCREG_LPR		0x0200000C		; LPR  - LinkPort Recieve
+df. HCREG_KLB		0x02000010		; KLB  - Keypad LowByte  (0xFC) *(4)
+df. HCREG_KHB		0x02000014		; KHB  - Keypad HighByte (0xFF)
+df. HCREG_TLB		0x02000018		; TLB  - Timmer LowByte
+df. HCREG_THB		0x0200001C		; THB  - Timmer HighByte
+df. HCREG_TCR		0x02000020		; TCR  - Timmer Controll Reg
+;df. HCREG_??		0x02000024		; ??   - ??
+df. HCREG_KCR		0x02000028		; KCR  - Keypad Controll Reg
+
+;---------------
+; VB Expantion Mem
+;---------------
+df. EXP_START		0x04000000		; 0x0400 0000 - 0x04FF FFFF - Expantion area?
+							; 0x0403 FF70 - 0x0403 FFCF - System I/O ???
+
+;---------------
+; VB NVC Ram - Scratch Ram
+;---------------
+df. NVC_START		0x05000000		; 0x0500 0000 - 0x0500 FFFF  WRAM  0xFFFF bytes	// NVC W_RAM, mask with ffff
+
+;---------------
+; VB Cartrige Ram (Game Ram)
+;---------------
+df. CRAM_START		0x06000000		; 0x0600 0000 - 0x0600 1FFF - cartrig ram, Maby 0600 3FFF? (VGolf might have 16k of ram?)
+
+;---------------
+; VB Cartrige Rom
+;---------------
+df. CROM_START		0x07000000		; 0x0700 0000 - 0x07FF FFFF - Cartrige Rom *(3)

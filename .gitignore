@@ -41,3 +41,7 @@
 /nintendo/vb/gccvb/helloworld/v810_err.txt
 /nintendo/vb/gccvb/helloworld/dist/hello.vb
 /nintendo/vb/gccvb/helloworld/dist/hello0.map
+/nintendo/vb/vbasm/helloworld/dist/hello.vb
+/nintendo/vb/vbasm/helloworld/dist/hello0.map
+/nintendo/vb/vbasm/helloworld/obj/hello.o
+/nintendo/vb/vbasm/helloworld/v810_err.txt
