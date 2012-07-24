@@ -47,6 +47,9 @@ obj/tiles.o: src/tiles.asm
 # startet das erstellte NES-Rom im Emulator
 run: all
 	$(EMU) dist/hello.bin
+  
+#deploy: all
+#	$(DEPLOYER) dist/hello.bin
 
 # löscht alle (durch dieses Makefile) erzeugten Dateien
 clean:

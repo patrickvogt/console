@@ -33,7 +33,7 @@ run: dist/hello.smc
 	$(EMU) dist/hello.smc
   
 #deploy: all
-#	$(DEPLOYER) dist/hello.nes
+#	$(DEPLOYER) dist/hello.smc
 
 # löscht alle (durch dieses Makefile) erzeugten Dateien
 clean:

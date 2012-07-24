@@ -3,13 +3,13 @@
 ################################################################################
 
 # Dateien, die durch ein 'clean' gelöscht werden sollen
-CLEANABLE_OBJS = dist/hello.sms obj/hello.o tools/chr2asciiart.exe \
+CLEANABLE_OBJS = dist/hello.gg obj/hello.o tools/chr2asciiart.exe \
   tools/asciiart2chr.exe bin/pattern_table_1.chr
 
 ASSEMBLER = wla-z80 # Damit wird unser Assemblercode in eine Objektdatei kompiliert
 LINKER = wlalink # Dieser 'linkt' unsere Objektdateien in ein ROM
-EMU = sms  # Legt den SMS-Emulator fest, mit dem wir unser ROM testen
-#DEPLOYER = mega-usb # Legt das Programm fest, um das ROM auf eine Karte zu übertragen
+EMU = gg  # Legt den Emulator fest, mit dem wir unser ROM testen
+#DEPLOYER = # Legt das Programm fest, um das ROM auf eine Karte zu übertragen
 CC = gcc # C-Compiler
 CFLAGS = -Wall -ansi -pedantic -g -O0 # C-Compiler-Argumente
 ASSFLAGS = # Argumente für den Assembler
@@ -24,18 +24,18 @@ ASSFLAGS = # Argumente für den Assembler
 .PHONY: all run clean tools deploy
 
 # Standard-Target wird automatisch bei einem 'make' ausgeführt
-all: dist/hello.sms
+all: dist/hello.gg
 
-dist/hello.sms: tools bin/pattern_table_1.chr src/main.asm src/sdsc.inc src/vdp.inc ./hello.link
-	 cd src && $(ASSEMBLER) -vo main.asm ../obj/hello.o && cd ..
-	 $(LINKER) -vr ./hello.link dist/hello.sms
-
+dist/hello.gg: tools bin/pattern_table_1.chr src/hello.asm ./hello.link
+	 cd src && $(ASSEMBLER) -vo hello.asm ../obj/hello.o && cd ..
+	 $(LINKER) -rv ./hello.link dist/hello.gg
+  
 # startet das erstellte ROM im Emulator
 run: all
-	$(EMU) dist/hello.sms
+	$(EMU) dist/hello.gg
   
 #deploy: all
-#	$(DEPLOYER) dist/hello.sms
+#	$(DEPLOYER) dist/hello.gg
 
 # erstellt ausführbare Hilfs-Programme
 tools: tools/chr2asciiart tools/asciiart2chr
