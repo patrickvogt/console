@@ -8,6 +8,13 @@ ALLE
 
 ======
 
+SEGA GAME GEAR - helloworld (wla)
+------
+
++ richtiges "Hello World"-Beispiel
+
+======
+
 SEGA MASTER SYSTEM - helloworld (wla)
 ------
 
@@ -16,6 +23,20 @@ SEGA MASTER SYSTEM - helloworld (wla)
 + Scrolling-Effekt entfernen (dass sich die Zeichenkette "Hallo Welt" erst 
     aufbaut
 
+======
+
+VIRTUAL BOY - helloworld (vbasm)
+------
+
++ richtiges "Hello World"-Beispiel 
+   
+======
+
+VIRTUAL BOY - helloworld (gccVB)
+------
+
++ richtiges "Hello World"-Beispiel
+    
 ======
 
 GB - helloworld (rgbds)
