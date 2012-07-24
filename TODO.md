@@ -45,7 +45,7 @@ GB - helloworld (rgbds)
 + PATTERN TABLE dynamisch erstellen, ähnlich zum NES helloworld
 + ROM Header reparieren (NO$GMB erzeugt beim Laden eine Warnung)
 
-GB - helloworld (rgbds)
+GB - helloworld (wla)
 ------
 
 + Portierung der rgbds-Version nach wla
