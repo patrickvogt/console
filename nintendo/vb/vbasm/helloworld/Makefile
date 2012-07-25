@@ -23,8 +23,8 @@ ASSFLAGS = # Argumente für den Assembler
 
 all: dist/hello.vb
 
-dist/hello.vb: src/hello.asm
-	 cd src && $(ASSEMBLER) hello.asm -o ../dist/hello.vb && cd ..
+dist/hello.vb: src/main.asm
+	 cd src && $(ASSEMBLER) main.asm -o ../dist/hello.vb && cd ..
  
 run: dist/hello.vb
 	$(EMU) dist/hello.vb
