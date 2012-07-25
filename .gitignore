@@ -47,3 +47,5 @@
 /nintendo/vb/vbasm/helloworld/v810_err.txt
 /nintendo/gb/rgbds/helloworld/memory.map
 /sega/sg/binutils-m68k-coff/helloworld/obj/tiles.o
+/nintendo/gb/wla/helloworld/dist/hello.gb
+/nintendo/gb/wla/helloworld/obj/main.o

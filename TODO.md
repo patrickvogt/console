@@ -48,7 +48,8 @@ GB - helloworld (rgbds)
 GB - helloworld (wla)
 ------
 
-+ Portierung der rgbds-Version nach wla
++ Auf richtiger Hardware zum Laufen bringen
++ Checksums reparieren (obwohl das kein Einfluss auf die reale Hardware haben sollte)
 
 ======
 
