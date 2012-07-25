@@ -25,9 +25,9 @@ ASSFLAGS = # Argumente für den Assembler
 all: dist/hello.smc
 
 dist/hello.smc: src/header.inc src/main.asm src/init.asm \
-    src/load_graphics.asm src/snes.inc src/tiles.inc ./hello.link
+    src/load_graphics.asm src/snes.inc src/tiles.inc ./main.link
 	 cd src && $(ASSEMBLER) -vo main.asm ../obj/main.o && cd ..
-	 $(LINKER) -vr ./hello.link dist/hello.smc
+	 $(LINKER) -vr ./main.link dist/hello.smc
 
 run: dist/hello.smc
 	$(EMU) dist/hello.smc
