@@ -4,7 +4,7 @@
 
 # Dateien, die durch ein 'clean' gelöscht werden sollen
 CLEANABLE_OBJS = dist/hello.bin memory.map \
- obj/sega.o obj/main.o obj/tiles.o \
+ obj/genesis.o obj/main.o obj/tiles.o \
  obj/z80driver.o bin/a.out Gens.cfg language.dat
 
 ASSEMBLER = m68k-coff-as # Damit wird unser Assemblercode in eine Objektdatei kompiliert
@@ -28,11 +28,11 @@ ASSFLAGS = -m68000 --register-prefix-optional --bitwise-or # Argumente für den A
 all: dist/hello.bin
 
 # Hier ist die Reihenfolge der Prerequisits(?) wichtig!
-dist/hello.bin: obj/sega.o obj/z80driver.o obj/main.o obj/tiles.o 
+dist/hello.bin: obj/genesis.o obj/z80driver.o obj/main.o obj/tiles.o 
 	 $(LINKER) -Tsg.link -Map memory.map $^ -o bin/a.out
 	 $(OBJCOPY) -I coff-m68k -O binary bin/a.out $@
    
-obj/sega.o: src/sega.asm
+obj/genesis.o: src/genesis.asm
 	 $(ASSEMBLER) $(ASSFLAGS) -o $@ $<
    
 obj/z80driver.o: src/z80driver.asm
