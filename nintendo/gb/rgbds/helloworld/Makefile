@@ -27,11 +27,11 @@ all: dist/hello.gb
 
 dist/hello.gb: src/hello.asm src/ibmpc1.inc src/memory.asm src/gbhw.inc ./hello.link
 	 cd src && $(ASSEMBLER) -o../obj/hello.o hello.asm && cd ..
-	 $(LINKER) -mmemory.map ./hello.link
+	 $(LINKER) -ts -mmemory.map ./hello.link
 	 $(FIXER) -v dist/hello.gb
 
 run: dist/hello.gb
-	$(EMU)
+	$(EMU) dist/hello.gb
   
 #deploy: dist/hello.gb
 #	$(DEPLOYER) dist/hello.gb
