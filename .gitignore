@@ -49,3 +49,8 @@
 /sega/sg/binutils-m68k-coff/helloworld/obj/tiles.o
 /nintendo/gb/wla/helloworld/dist/hello.gb
 /nintendo/gb/wla/helloworld/obj/main.o
+/nintendo/gb/rgbds/helloworld/obj/main.o
+/nintendo/nes/wla/helloworld/obj/main.o
+/nintendo/vb/gccvb/helloworld/obj/main.o
+/sega/gg/wla/helloworld/obj/main.o
+/sega/sms/wla/helloworld/obj/main.o

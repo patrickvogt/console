@@ -5,6 +5,7 @@
 ALLE
 ------
 + Dokumenation
++ generischer Ansatz zum Bauen von Pattern Tables (zumindest für Schriftart)
 
 ======
 
