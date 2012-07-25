@@ -3,7 +3,7 @@
 ################################################################################
 
 # Dateien, die durch ein 'clean' gelöscht werden sollen
-CLEANABLE_OBJS = dist/hello.gg obj/hello.o tools/chr2asciiart.exe \
+CLEANABLE_OBJS = dist/hello.gg obj/main.o tools/chr2asciiart.exe \
   tools/asciiart2chr.exe bin/pattern_table_1.chr
 
 ASSEMBLER = wla-z80 # Damit wird unser Assemblercode in eine Objektdatei kompiliert
@@ -26,9 +26,9 @@ ASSFLAGS = # Argumente für den Assembler
 # Standard-Target wird automatisch bei einem 'make' ausgeführt
 all: dist/hello.gg
 
-dist/hello.gg: tools bin/pattern_table_1.chr src/hello.asm ./hello.link
-	 cd src && $(ASSEMBLER) -vo hello.asm ../obj/hello.o && cd ..
-	 $(LINKER) -rv ./hello.link dist/hello.gg
+dist/hello.gg: tools bin/pattern_table_1.chr src/main.asm ./main.link
+	 cd src && $(ASSEMBLER) -vo main.asm ../obj/main.o && cd ..
+	 $(LINKER) -rv ./main.link dist/hello.gg
   
 # startet das erstellte ROM im Emulator
 run: all
