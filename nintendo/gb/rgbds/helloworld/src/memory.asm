@@ -18,7 +18,7 @@ rev_Check_memory1_asm: MACRO
         ENDC
         ENDM
 
-        INCLUDE "gbhw.inc"
+        INCLUDE "gb.inc"
 
 ; Macro that pauses until VRAM available.
 

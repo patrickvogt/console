@@ -1,5 +1,5 @@
 [Objects]
-obj/hello.o
+obj/main.o
 
 [Output]
 dist/hello.gb

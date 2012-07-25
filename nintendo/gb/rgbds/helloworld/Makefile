@@ -3,7 +3,7 @@
 ################################################################################
 
 # Dateien, die durch ein 'clean' gelöscht werden sollen
-CLEANABLE_OBJS = dist/hello.gb obj/hello.o
+CLEANABLE_OBJS = dist/hello.gb obj/main.o
 
 ASSEMBLER = RGBASM95 # Damit wird unser Assemblercode in eine Objektdatei kompiliert
 LINKER = XLINK95 # Dieser 'linkt' unsere Objektdateien in ein ROM
@@ -25,9 +25,9 @@ ASSFLAGS = # Argumente für den Assembler
 
 all: dist/hello.gb
 
-dist/hello.gb: src/hello.asm src/ibmpc1.inc src/memory.asm src/gbhw.inc ./hello.link
-	 cd src && $(ASSEMBLER) -o../obj/hello.o hello.asm && cd ..
-	 $(LINKER) -ts -mmemory.map ./hello.link
+dist/hello.gb: src/main.asm src/tiles.inc src/memory.asm src/gb.inc ./main.link
+	 cd src && $(ASSEMBLER) -o../obj/main.o main.asm && cd ..
+	 $(LINKER) -ts -mmemory.map ./main.link
 	 $(FIXER) -v dist/hello.gb
 
 run: dist/hello.gb

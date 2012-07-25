@@ -21,7 +21,7 @@
 ; into the present EXAMPLE1.ASM file by using the
 ; assembler INCLUDE command:
 
-INCLUDE "gbhw.inc" ; standard hardware definitions from devrs.com
+INCLUDE "gb.inc" ; standard hardware definitions from devrs.com
 
 ;  Next we want to include a file that contains a font
 ; macro. A macro is a portion of code or data that
@@ -32,7 +32,7 @@ INCLUDE "gbhw.inc" ; standard hardware definitions from devrs.com
 ; we will do later. For now, we are just making the macro
 ; name recognizable by our program.
 
-INCLUDE "ibmpc1.inc" ; ASCII character set from devrs.com
+INCLUDE "tiles.inc" ; ASCII character set from devrs.com
 
 ; We are going to keep interrupts disabled for this program.
 ; However, it is good practice to leave the reserved memory locations for interrupts with
