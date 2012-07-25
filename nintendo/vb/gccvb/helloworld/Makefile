@@ -3,7 +3,7 @@
 ################################################################################
 
 # Dateien, die durch ein 'clean' gelöscht werden sollen
-CLEANABLE_OBJS = dist/hello.vb obj/hello.o
+CLEANABLE_OBJS = dist/hello.vb obj/main.o
 
 CCVB = v810-gcc # Damit wird unser Quellcode in eine Objektdatei kompiliert
 OBJCOPY = v810-objcopy # Das ROM in ein gültiges VB-ROM umwandeln
@@ -24,9 +24,9 @@ CFLAGSVB = -Wall -nodefaultlibs -mv810 -xc # Argumente für den Cross-Compiler
 
 all: dist/hello.vb
 
-dist/hello.vb: src/hello.c
-	 $(CCVB) $(CFLAGSVB) -I./include -o obj/hello.o src/hello.c
-	 $(OBJCOPY) -S -O binary obj/hello.o dist/hello.vb
+dist/hello.vb: src/main.c
+	 $(CCVB) $(CFLAGSVB) -I./include -o obj/main.o src/main.c
+	 $(OBJCOPY) -S -O binary obj/main.o dist/hello.vb
 
 run: dist/hello.vb
 	$(EMU) dist/hello.vb
