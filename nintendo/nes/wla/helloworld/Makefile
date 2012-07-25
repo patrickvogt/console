@@ -52,9 +52,9 @@ bin/pattern_table_1.chr: res/pattern_table_1.txt
 bin/pattern_table_2.chr: res/pattern_table_2.txt
 	tools/asciiart2chr $< $@
 
-dist/hello.nes: src/main.asm src/nes.inc src/nes_memory.inc ./hello.link
+dist/hello.nes: src/main.asm src/nes.inc src/nes_memory.inc ./main.link
 	 cd src && $(ASSEMBLER) -vo main.asm ../obj/main.o && cd ..
-	 $(LINKER) -vr ./hello.link dist/hello.nes
+	 $(LINKER) -vr ./main.link dist/hello.nes
    
 # löscht alle (durch dieses Makefile) erzeugten Dateien
 clean:
