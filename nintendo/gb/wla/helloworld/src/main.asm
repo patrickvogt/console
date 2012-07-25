@@ -42,7 +42,7 @@ BANKS 2
 ; into the present EXAMPLE1.ASM file by using the
 ; assembler INCLUDE command:
 
-.INCLUDE "gbhw.inc" ; standard hardware definitions from devrs.com
+.INCLUDE "gb.inc" ; standard hardware definitions from devrs.com
 
 ;  Next we want to include a file that contains a font
 ; macro. A macro is a portion of code or data that
@@ -127,7 +127,7 @@ jp	begin
 
 TileData:
 ;TODO
-.INCLUDE "ibmpc1.inc" ; ASCII character set from devrs.com
+.INCLUDE "tiles.inc" ; ASCII character set from devrs.com
 
 ;  The NOP and then JP located at $100 in ROM are executed
 ; which causes the the following code to be executed next.

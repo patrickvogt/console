@@ -24,9 +24,9 @@ ASSFLAGS = # Argumente für den Assembler
 
 all: dist/hello.gb
 
-dist/hello.gb: src/main.asm src/ibmpc1.inc src/memory.asm src/gbhw.inc ./hello.link
+dist/hello.gb: src/main.asm src/tiles.inc src/memory.asm src/gb.inc ./main.link
 	 cd src && $(ASSEMBLER) -vo main.asm ../obj/main.o && cd ..
-	 $(LINKER) -vr ./hello.link dist/hello.gb
+	 $(LINKER) -vr ./main.link dist/hello.gb
 
 run: dist/hello.gb
 	$(EMU) dist/hello.gb
