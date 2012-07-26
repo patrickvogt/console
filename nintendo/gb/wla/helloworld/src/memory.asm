@@ -9,7 +9,7 @@
 ; Macro that pauses until VRAM available.
 
 .MACRO lcd_WaitVRAM
--        ldh      a,[rSTAT & $FF]       ; <---+
+-        ld      a,[rSTAT]       ; <---+
         and     STATF_BUSY      ;     |
         jr      nz,-          ; ----+
 .ENDM
