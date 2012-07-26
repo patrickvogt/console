@@ -170,7 +170,7 @@ begin:
 
 init:
 	ld	a, %11100100 	; Window palette colors, from darkest to lightest
-	ld	[rBGP], a		; CLEAR THE SCREEN
+	ldh	[rBGP & $FF], a		; CLEAR THE SCREEN
 
 ;  Here we are setting the X/Y scroll registers
 ; for the tile background to 0 so that we can see
@@ -185,8 +185,8 @@ init:
 ; view the upper left corner of the 'canvas'.
 
 	ld	a,0			; SET SCREEN TO TO UPPER RIGHT HAND CORNER
-	ld	[rSCX], a
-	ld	[rSCY], a
+	ldh	[rSCX & $FF], a
+	ldh	[rSCY & $FF], a
 
 ;  Next we shall turn the Liquid Crystal Display (LCD)
 ; off so that we can copy data to video RAM. We can
@@ -229,7 +229,7 @@ init:
 	
 ; We turn the LCD on. Parameters are explained in the I/O registers section of The GameBoy reference under I/O register LCDC
 	ld	a, LCDCF_ON|LCDCF_BG8000|LCDCF_BG9800|LCDCF_BGON|LCDCF_OBJ16|LCDCF_OBJOFF 
-	ld	[rLCDC], a	
+	ldh	[rLCDC & $FF], a	
 	
 ; Next, we clear our 'canvas' to all white by
 ; 'setting' the canvas to ascii character $20
@@ -263,6 +263,7 @@ init:
 ; causes an infinite loop condition to occur.
 wait:
 	halt
+  nop
 	nop
 	jr	wait
 	
@@ -279,21 +280,21 @@ TitleEnd:
 ; and wait until the LCD is off
 ; ****************************************************************************************
 StopLCD:
-        ld      a,[rLCDC]
+        ldh      a,[rLCDC & $FF]
         rlca                    ; Put the high bit of LCDC into the Carry flag
         ret     nc              ; Screen is off already. Exit.
 
 ; Loop until we are in VBlank
 
 wait2:
-        ld      a,[rLY]
+        ldh      a,[rLY & $FF]
         cp      145             ; Is display on scan line 145 yet?
         jr      nz,wait2        ; no, keep waiting
 
 ; Turn off the LCD
 
-        ld      a,[rLCDC]
+        ldh      a,[rLCDC & $FF]
         res     7,a             ; Reset bit 7 of LCDC
-        ld      [rLCDC],a
+        ldh      [rLCDC & $FF],a
 
         ret
