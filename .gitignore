@@ -55,3 +55,7 @@
 /sega/gg/wla/helloworld/obj/main.o
 /sega/sms/wla/helloworld/obj/main.o
 /nintendo/gb/wla/helloworld/tools/gbfix.exe
+/sony/ps1/not-yaroze/helloworld/bin/hello.psx
+/sony/ps1/not-yaroze/helloworld/dist/hello.exe
+/sony/ps1/not-yaroze/helloworld/obj/hello.o
+/sony/ps1/not-yaroze/helloworld/tools/exefixup.exe
