@@ -9,6 +9,13 @@ ALLE
 
 ======
 
+SONY PLAYSTATION - controller (not-yaroze)
+------
+
++ strncpy zum Laufen bekommen?! ist die nicht in der syscall.o von libps.a?
+
+======
+
 SEGA GAME GEAR - helloworld (wla)
 ------
 
